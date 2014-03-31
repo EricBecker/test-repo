@@ -1,170 +1,328 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
     <title>Test-repo by EricBecker</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/EricBecker/test-repo">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/EricBecker/test-repo/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/EricBecker/test-repo/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <header>
-      <div class="container">
-        <h1>Test-repo</h1>
-        <h2>For testing purposes.</h2>
+    <div class="wrapper">
 
-        <section id="downloads">
-          <a href="https://github.com/EricBecker/test-repo/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/EricBecker/test-repo/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/EricBecker/test-repo" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+      <section>
+        <div id="title">
+          <h1>Test-repo</h1>
+          <p>For testing purposes.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/EricBecker">EricBecker</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
 
-    <div class="container">
-      <section id="main_content">
-        <h1>
-<a name="test-repo" class="anchor" href="#test-repo"><span class="octicon octicon-link"></span></a>test-repo</h1>
+        <p>[</p>
 
-<p>For testing purposes.</p>
+<h1>
+<a name="rubygems-guides" class="anchor" href="#rubygems-guides"><span class="octicon octicon-link"></span></a>RubyGems Guides</h1>
+
+<p>](/)</p>
+
+<p><a href="/">&lt;- Previous</a> <a href="/what-is-a-gem">Next -&gt;</a></p>
+
+<h1>
+<a name="rubygems-basics" class="anchor" href="#rubygems-basics"><span class="octicon octicon-link"></span></a>RubyGems Basics</h1>
+
+<p>The <code>gem</code> command allows you to interact with RubyGems.</p>
+
+<p>Ruby 1.9 and newer ships with RubyGems built-in but you may need to upgrade
+for bug fixes or new features. To upgrade RubyGems or install it for the first
+time (if you need to use Ruby 1.9) visit the
+<a href="https://rubygems.org/pages/download">download</a> page.</p>
+
+<p>If you want to see how to require files from a gem, skip ahead to <a href="/what-is-a-gem">What is a
+gem</a></p>
 
 <ul>
-<li>&amp;nbsp_place_holder;<a href="homesettings.html">Settings</a>
-</li>
-<li>    *     *     *     * Experimental Feature <strong>&amp;nbsp_place_holder;</strong>
-</li>
-</ul><p>You have the Wolfram <em>CDF Player</em> installed and can now enable Wolfram|Alpha
-Interactive to:</p>
+<li>Finding Gems</li>
+<li>Installing Gems</li>
+<li>Requiring Code</li>
+<li>Listing Installed Gems</li>
+<li>Uninstalling Gems</li>
+<li>Viewing Documentation</li>
+<li>Fetching and Unpacking Gems</li>
+<li>Further Reading</li>
+</ul><h2>
+<a name="finding-gems" class="anchor" href="#finding-gems"><span class="octicon octicon-link"></span></a>Finding Gems</h2>
 
-<ul>
-<li>Interact with your results using sliders and controls</li>
-<li>Rotate and zoom 3D graphics and visualizations</li>
-<li>Manipulate results directly in your browser
-<a href="/cdf-experiment/">Learn more »</a>
-<a>&amp;nbsp_place_holder;</a> <a>Remind me
-later</a>
-</li>
-</ul><p>&amp;nbsp_place_holder;</p>
+<p>The <code>search</code> command lets you find remote gems by name. You can use regular
+expression characters in your query:</p>
 
-<h1>
-<a name="experimental-feature" class="anchor" href="#experimental-feature"><span class="octicon octicon-link"></span></a>Experimental Feature</h1>
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem search ^rails
+</pre></div>
 
-<p><strong>&amp;nbsp_place_holder;</strong></p>
+<pre><code>*** REMOTE GEMS ***
 
-<p><strong>Thanks for helping us test Wolfram|Alpha with CDF!</strong></p>
+rails (4.0.0)
+rails-3-settings (0.1.1)
+rails-action-args (0.1.1)
+rails-admin (0.0.0)
+rails-ajax (0.2.0.20130731)
+[...]
+</code></pre>
 
-<p>Try these interactive examples:</p>
+<p>If you see a gem you want more information on you can add the details option.
+You’ll want to do this with a small number of gems, though, as listing gems
+with details requires downloading more files:</p>
 
-<ul>
-<li><p>Interactively manipulate parameters</p></li>
-<li><p>Rotate 3D graphics</p></li>
-<li><p>Read plot values</p></li>
-<li><p>Animate dynamic processes</p></li>
-<li><p>Instantly build interactive interfaces</p></li>
-</ul><p>&amp;nbsp_place_holder;</p>
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem search ^rails<span class="nv">$ </span>-d
+</pre></div>
 
-<h1>
-<a name="experimental-feature-1" class="anchor" href="#experimental-feature-1"><span class="octicon octicon-link"></span></a>Experimental Feature</h1>
+<pre><code>*** REMOTE GEMS ***
 
-<p><strong>&amp;nbsp_place_holder;</strong></p>
+rails (4.0.0)
+    Author: David Heinemeier Hansson
+    Homepage: http://www.rubyonrails.org
 
-<p><strong>Thanks for helping us test Wolfram|Alpha with CDF!</strong></p>
+    Full-stack web application framework.
+</code></pre>
 
-<p>Please tell us what you think: <a href="/cdf/survey.jsp">Take a survey »</a></p>
-
-<p>&amp;nbsp_place_holder;</p>
-
-<h1>
-<a name="experimental-feature-2" class="anchor" href="#experimental-feature-2"><span class="octicon octicon-link"></span></a>Experimental Feature</h1>
-
-<p><strong>&amp;nbsp_place_holder;</strong></p>
-
-<p><a>&amp;nbsp_place_holder;</a> <a href="/cdf-%0Aexperiment/">Learn more »</a> <a href="/cdf/survey.jsp">Take a survey »</a></p>
-
-<p>&amp;nbsp_place_holder;</p>
-
-<p>To see full output on this page you need to enable JavaScript in your
-browser.&amp;nbsp_place_holder;&amp;nbsp_place_holder;&amp;nbsp_place_holder;<a href="/Calculate/nojs.jsp">More info
-»</a></p>
-
-<p><img src="images/homepage/wa-logo.png" alt="Wolfram|Alpha computational knowledge engine">
-Enter what you want to <strong>calculate</strong> or <strong>know about</strong>:</p>
-
-<p><a href="/examples/">Examples</a> <a href="/input/random.jsp">Random</a></p>
-
-<p><img src="/images/homepage/try-colors.png" alt="Try New Colors"></p>
-
-<h1>
-<a name="access-the-wolframalpha-computational-knowledge-engine" class="anchor" href="#access-the-wolframalpha-computational-knowledge-engine"><span class="octicon octicon-link"></span></a>Access the Wolfram|Alpha computational knowledge engine:</h1>
-
-<p>Answer questions, do math, instantly get facts, create plots, calculators,
-unit conversions, scientific data and statistics, help with homework--and much
-more.</p>
-
-<p><a href="/tour/what-is-%0Awolframalpha.html"><img src="/images/homepage/takeatour.png" alt="Take a tour"></a></p>
-
-<p>&amp;nbsp_place_holder;</p>
-
-<p>X</p>
+<p>You can also search for gems on rubygems.org such as <a href="https://rubygems.org/search?utf8=%E2%9C%93&amp;query=rake">this search for
+rake</a></p>
 
 <h2>
-<a name="edit-this-favorite" class="anchor" href="#edit-this-favorite"><span class="octicon octicon-link"></span></a>Edit this favorite</h2>
+<a name="installing-gems" class="anchor" href="#installing-gems"><span class="octicon octicon-link"></span></a>Installing Gems</h2>
 
-<p>Query:</p>
+<p>The <code>install</code> command downloads and installs the gem and any necessary
+dependencies then builds documentation for the installed gems.</p>
 
-<p>Tag:</p>
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem install drip
+    Fetching: rbtree-0.4.1.gem <span class="o">(</span>100%<span class="o">)</span>
+    Building native extensions.  This could take a <span class="k">while</span>...
+    Successfully installed rbtree-0.4.1
+    Fetching: drip-0.0.2.gem <span class="o">(</span>100%<span class="o">)</span>
+    Successfully installed drip-0.0.2
+    Parsing documentation <span class="k">for </span>rbtree-0.4.1
+    Installing ri documentation <span class="k">for </span>rbtree-0.4.1
+    Parsing documentation <span class="k">for </span>drip-0.0.2
+    Installing ri documentation <span class="k">for </span>drip-0.0.2
+    Done installing documentation <span class="k">for </span>rbtree, drip after 0 seconds
+    2 gems installed
+</pre></div>
 
-<p>Notes:</p>
+<p>Here the drip command depends upon the rbtree gem which has an extension. Ruby
+installs the dependency rbtree and builds its extension, installs the drip
+gem, then builds documentation for the installed gems.</p>
 
-<p>Remove from favorites</p>
+<p>You can disable documentation generation using the <code>--no-doc</code> argument when
+installing gems.</p>
 
-<p>Done</p>
+<h2>
+<a name="requiring-code" class="anchor" href="#requiring-code"><span class="octicon octicon-link"></span></a>Requiring code</h2>
 
-<ul>
-<li><a href="/about.html">About</a></li>
-<li><a href="/pro/?src=footer">Pro</a></li>
-<li><a href="http://products.wolframalpha.com/">Products</a></li>
-<li><a href="http://products.wolframalpha.com/mobile/">Mobile Apps</a></li>
-<li><a href="http://products.wolframalpha.com/business/">Business Solutions</a></li>
-<li><a href="http://products.wolframalpha.com/developers/">For Developers</a></li>
-<li><a href="/resources/">Resources &amp; Tools</a></li>
-<li><a href="http://blog.wolframalpha.com/">Blog</a></li>
-<li><a href="http://community.wolfram.com/">Community</a></li>
-<li><a href="/participate/">Participate</a></li>
-<li><a href="/contact.html">Contact</a></li>
-<li><a href="/social/">Connect __ __ __ __ __ __ </a></li>
-<li>(C) 2014 Wolfram Alpha LLC--A <a href="http://www.wolfram.com/">Wolfram Research</a> Company</li>
-<li><a href="/termsofuse.html">Terms</a></li>
-<li><a href="/privacypolicy.html">Privacy</a></li>
-</ul><p>&amp;nbsp_place_holder;</p>
+<p>RubyGems modifies your Ruby load path, which controls how your Ruby code is
+found by the <code>require</code> statement. When you <code>require</code> a gem, really you’re just
+placing that gem’s <code>lib</code> directory onto your <code>$LOAD_PATH</code>. Let’s try this out
+in <code>irb</code> and get some help from the <code>pretty_print</code> library included with Ruby.</p>
 
-<p><a href="">&amp;nbsp_place_holder;</a></p>
+<p><em>Tip: Passing <code>-r</code> to <code>irb</code> will automatically require a library when irb is
+loaded.</em></p>
 
-<p>Sign Up for Wolfram|Alpha News</p>
+<div class="highlight highlight-ruby"><pre>    <span class="sx">% irb </span><span class="o">-</span><span class="n">rpp</span>
+    <span class="o">&gt;&gt;</span> <span class="n">pp</span> <span class="vg">$LOAD_PATH</span>
+    <span class="o">[</span><span class="s2">".../lib/ruby/site_ruby/1.9.1"</span><span class="p">,</span>
+     <span class="s2">".../lib/ruby/site_ruby"</span><span class="p">,</span>
+     <span class="s2">".../lib/ruby/vendor_ruby/1.9.1"</span><span class="p">,</span>
+     <span class="s2">".../lib/ruby/vendor_ruby"</span><span class="p">,</span>
+     <span class="s2">".../lib/ruby/1.9.1"</span><span class="p">,</span>
+     <span class="s2">"."</span><span class="o">]</span>
+</pre></div>
 
-<p>Name (optional)</p>
+<p>By default you have just a few system directories on the load path and the
+Ruby standard libraries. To add the awesome_print directories to the load
+path, you can require one of its files:</p>
 
-<p>Organization (optional)</p>
+<div class="highlight highlight-ruby"><pre>    <span class="sx">% irb </span><span class="o">-</span><span class="n">rpp</span>
+    <span class="o">&gt;&gt;</span> <span class="nb">require</span> <span class="s1">'ap'</span>
+    <span class="o">=&gt;</span> <span class="kp">true</span>
+    <span class="o">&gt;&gt;</span> <span class="n">pp</span> <span class="vg">$LOAD_PATH</span><span class="o">.</span><span class="n">first</span>
+    <span class="s2">".../gems/awesome_print-1.0.2/lib"</span>
+</pre></div>
 
-<p>Email</p>
+<p>Note: For Ruby 1.8 you must <code>require 'rubygems'</code> before requiring any gems.</p>
 
-<p>Message (optional) <a href="">&amp;nbsp_place_holder;</a></p>
+<p>Once you’ve required <code>ap</code>, RubyGems automatically places its <code>lib</code> directory
+on the <code>$LOAD_PATH</code>.</p>
 
-<p><a href="">&amp;nbsp_place_holder;</a></p>
+<p>That’s basically it for what’s in a gem. Drop Ruby code into <code>lib</code>, name a
+Ruby file the same as your gem (for the gem “freewill” the file should be
+<code>freewill.rb</code>, see also <a href="/name-your-gem">name your gem</a>) and it’s loadable by
+RubyGems.</p>
 
-<p>Thank You</p>
+<p>The <code>lib</code> directory itself normally contains only one <code>.rb</code> file and a
+directory with the same name as the gem which contains the rest of the files.</p>
 
-<p>We appreciate your interest in Wolfram|Alpha and will be in touch soon.</p>
+<p>For example:</p>
 
-<p><em>--The Wolfram|Alpha Team</em></p>
+<div class="highlight highlight-ruby"><pre>    <span class="sx">% tree </span><span class="n">freewill</span><span class="o">/</span>
+    <span class="n">freewill</span><span class="o">/</span>
+    <span class="err">└──</span> <span class="n">lib</span><span class="o">/</span>
+        <span class="err">├──</span> <span class="n">freewill</span><span class="o">/</span>
+        <span class="err">│</span>   <span class="err">├──</span> <span class="n">user</span><span class="o">.</span><span class="n">rb</span>
+        <span class="err">│</span>   <span class="err">├──</span> <span class="n">widget</span><span class="o">.</span><span class="n">rb</span>
+        <span class="err">│</span>   <span class="err">└──</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+        <span class="err">└──</span> <span class="n">freewill</span><span class="o">.</span><span class="n">rb</span>
+</pre></div>
+
+<h2>
+<a name="listing-installed-gems" class="anchor" href="#listing-installed-gems"><span class="octicon octicon-link"></span></a>Listing Installed Gems</h2>
+
+<p>The <code>list</code> command shows your locally installed gems:</p>
+
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem list
+</pre></div>
+
+<pre><code>*** LOCAL GEMS ***
+
+bigdecimal (1.2.0)
+drip (0.0.2)
+io-console (0.4.2)
+json (1.7.7)
+minitest (4.3.2)
+psych (2.0.0)
+rake (0.9.6)
+rbtree (0.4.1)
+rdoc (4.0.0)
+test-unit (2.0.0.0)
+</code></pre>
+
+<p>(Ruby ships with some gems by default, bigdecimal, io-console, json, minitest,
+psych, rake, rdoc, test-unit for ruby 2.0.0).</p>
+
+<h2>
+<a name="uninstalling-gems" class="anchor" href="#uninstalling-gems"><span class="octicon octicon-link"></span></a>Uninstalling Gems</h2>
+
+<p>The <code>uninstall</code> command removes the gems you have installed.</p>
+
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem uninstall drip
+    Successfully uninstalled drip-0.0.2
+</pre></div>
+
+<p>If you uninstall a dependency of a gem RubyGems will ask you for confirmation.</p>
+
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem uninstall rbtree
+
+    You have requested to uninstall the gem:
+        rbtree-0.4.1
+
+    drip-0.0.2 depends on rbtree <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>
+    If you remove this gem, these dependencies will not be met.
+    Continue with Uninstall? <span class="o">[</span>yN<span class="o">]</span>  n
+    ERROR:  While executing gem ... <span class="o">(</span>Gem::DependencyRemovalException<span class="o">)</span>
+        Uninstallation aborted due to dependent gem<span class="o">(</span>s<span class="o">)</span>
+</pre></div>
+
+<h2>
+<a name="viewing-documentation" class="anchor" href="#viewing-documentation"><span class="octicon octicon-link"></span></a>Viewing Documentation</h2>
+
+<p>You can view the documentation for your installed gems with <code>ri</code>:</p>
+
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>ri RBTree
+    RBTree &lt; MultiRBTree
+</pre></div>
+
+<pre><code>(from gem rbtree-0.4.0)
+</code></pre>
+
+<hr><pre><code>A sorted associative collection that cannot
+contain duplicate keys. RBTree is a
+subclass of MultiRBTree.
+</code></pre>
+
+<hr><p>You can view the documentation for your installed gems in your browser with
+the <code>server</code> command:</p>
+
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem server
+    Server started at http://0.0.0.0:8808
+    Server started at http://<span class="o">[</span>::<span class="o">]</span>:8808
+</pre></div>
+
+<p>You can access this documentation at http://localhost:8808</p>
+
+<h2>
+<a name="fetching-and-unpacking-gems" class="anchor" href="#fetching-and-unpacking-gems"><span class="octicon octicon-link"></span></a>Fetching and Unpacking Gems</h2>
+
+<p>If you wish to audit a gem’s contents without installing it you can use the
+<code>fetch</code> command to download the .gem file then extract its contents with the
+<code>unpack</code> command.</p>
+
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem fetch malice
+    Fetching: malice-13.gem <span class="o">(</span>100%<span class="o">)</span>
+    Downloaded malice-13
+    <span class="nv">$ </span>gem unpack malice-13.gem
+    Fetching: malice-13.gem <span class="o">(</span>100%<span class="o">)</span>
+    Unpacked gem: <span class="s1">'.../malice-13'</span>
+    <span class="nv">$ </span>more malice-13/README
+
+    Malice v. 13
+
+    DESCRIPTION
+
+    A small, malicious library.
+
+    <span class="o">[</span>...<span class="o">]</span>
+    <span class="nv">$ </span>rm -r malice-13*
+</pre></div>
+
+<p>You can also unpack a gem you have installed, modify a few files, then use the
+modified gem in place of the installed one:</p>
+
+<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem unpack rake
+    Unpacked gem: <span class="s1">'.../rake-10.1.0'</span>
+    <span class="nv">$ </span>vim rake-10.1.0/lib/rake/...
+    <span class="nv">$ </span>ruby -I rake-10.1.0/lib -S rake some_rake_task
+    <span class="o">[</span>...<span class="o">]</span>
+</pre></div>
+
+<p>The <code>-I</code> argument adds your unpacked rake to the ruby <code>$LOAD_PATH</code> which
+prevents RubyGems from loading the gem version (or the default version). The
+<code>-S</code> argument finds <code>rake</code> in the shell’s <code>$PATH</code> so you don’t have to type
+out the full path.</p>
+
+<h2>
+<a name="further-reading" class="anchor" href="#further-reading"><span class="octicon octicon-link"></span></a>Further Reading</h2>
+
+<p>This guide only shows the basics of using the <code>gem</code> command. For information
+on what’s inside a gem and how to use one you’ve installed see the next
+section, <a href="/what-is-a-gem">What is a gem</a>. For a complete reference of gem
+commands see the <a href="/command-reference">Command Reference</a>.</p>
+
+<p><a href="/">&lt;- Previous</a> <a href="/what-is-a-gem">Next -&gt;</a></p>
+
+<p>hosted on <a href="http://pages.github.com/">GitHub</a> | these guides are <a href="https://github.com/rubygems/guides">open
+source</a> and <a href="http://creativecommons.org/licenses/by/3.0/">free to
+remix</a></p>
       </section>
-    </div>
 
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
