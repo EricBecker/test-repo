@@ -7,320 +7,440 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
+    <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/EricBecker/test-repo">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/EricBecker/test-repo/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/EricBecker/test-repo/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+
+      <header>
+        <h1>Test-repo</h1>
+        <p>For testing purposes.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/EricBecker/test-repo" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/EricBecker/test-repo/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/EricBecker/test-repo/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
 
     <div class="wrapper">
-
+      <nav>
+        <ul></ul>
+      </nav>
       <section>
-        <div id="title">
-          <h1>Test-repo</h1>
-          <p>For testing purposes.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/EricBecker">EricBecker</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+        <h1>
+<a name="orchestra" class="anchor" href="#orchestra"><span class="octicon octicon-link"></span></a>Orchestra</h1>
 
-        <p>[</p>
+<h2>
+<a name="warnings-and-disclaimers" class="anchor" href="#warnings-and-disclaimers"><span class="octicon octicon-link"></span></a>Warnings and Disclaimers</h2>
 
-<h1>
-<a name="rubygems-guides" class="anchor" href="#rubygems-guides"><span class="octicon octicon-link"></span></a>RubyGems Guides</h1>
+<p><strong>WARNING</strong> <strong>WARNING</strong> <strong>WARNING</strong> <strong>WARNING</strong></p>
 
-<p>](/)</p>
+<p>Moving machines can cause damage to personal property, personal injury or death. It is the responsibility of the reader of this document to take adequate safety precautions when operating, designing, or building any machinery, or when offering machinery to others for use.</p>
 
-<p><a href="/">&lt;- Previous</a> <a href="/what-is-a-gem">Next -&gt;</a></p>
+<p>None of the software, documents, firmware, schematics, drawings or other materials accompanying this document have been checked for errors, omissions or mistakes of any kind. Use it at your own risk.</p>
 
-<h1>
-<a name="rubygems-basics" class="anchor" href="#rubygems-basics"><span class="octicon octicon-link"></span></a>RubyGems Basics</h1>
+<p>Your use of the software, documents, firmware, schematics, drawings or other materials accompanying this document is governed by the <a href="../LICENSE.txt">License Agreement</a>. Read it before proceeding.</p>
 
-<p>The <code>gem</code> command allows you to interact with RubyGems.</p>
-
-<p>Ruby 1.9 and newer ships with RubyGems built-in but you may need to upgrade
-for bug fixes or new features. To upgrade RubyGems or install it for the first
-time (if you need to use Ruby 1.9) visit the
-<a href="https://rubygems.org/pages/download">download</a> page.</p>
-
-<p>If you want to see how to require files from a gem, skip ahead to <a href="/what-is-a-gem">What is a
-gem</a></p>
+<h2>
+<a name="contents" class="anchor" href="#contents"><span class="octicon octicon-link"></span></a>Contents</h2>
 
 <ul>
-<li>Finding Gems</li>
-<li>Installing Gems</li>
-<li>Requiring Code</li>
-<li>Listing Installed Gems</li>
-<li>Uninstalling Gems</li>
-<li>Viewing Documentation</li>
-<li>Fetching and Unpacking Gems</li>
-<li>Further Reading</li>
-</ul><h2>
-<a name="finding-gems" class="anchor" href="#finding-gems"><span class="octicon octicon-link"></span></a>Finding Gems</h2>
+<li><a href="#history-concept-and-intent">History, Concept and Intent</a></li>
+<li><a href="#what-is-the-orchestra-system">What is the Orchestra system</a></li>
+<li><a href="#this-document">This Document</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li>
+<a href="#reference">Reference</a>
 
-<p>The <code>search</code> command lets you find remote gems by name. You can use regular
-expression characters in your query:</p>
+<ul>
+<li><a href="#requirements-and-dependencies">Requirements and Dependencies</a></li>
+<li><a href="#configuration">Configuration</a></li>
+</ul>
+</li>
+</ul><p>Copyright Notice:
+Copyright 2013 Google Inc. All other copyrights and trademarks are property of their respective owners.</p>
 
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem search ^rails
-</pre></div>
+<hr><h2>
+<a name="history-concept-and-intent" class="anchor" href="#history-concept-and-intent"><span class="octicon octicon-link"></span></a>History, Concept and Intent</h2>
 
-<pre><code>*** REMOTE GEMS ***
+<p>The Universal Orchestra was originally conceived as one of five experiments devised for an interactive exhibit at the <a href="http://www.sciencemuseum.org.uk/">Science Museum, London</a> called <a href="http://www.chromeweblab.com/">Chrome Web Lab</a>. These five experiments were created to demonstrate how modern Web technologies can be used together for purposes that go beyond “normal” webapps.  </p>
 
-rails (4.0.0)
-rails-3-settings (0.1.1)
-rails-action-args (0.1.1)
-rails-admin (0.0.0)
-rails-ajax (0.2.0.20130731)
-[...]
+<p>Chrome Web Lab was made by Google Creative Labs, Tellart, B-Reel, Universal Design Studio, Fraser Randall, MAP, Karsten Schmidt, Weir+Wong and Bibliotheque. These five experiments can be accessed in person by visiting the Science Museum in London or over the web at <a href="http://www.chromeweblab.com/">chromeweblab.com</a>. Chrome Web Lab will run from July 2012 until July 2013.</p>
+
+<p>Orchestra is designed for people across the world to make music collaboratively. Online visitors interact with Orchestra by selecting notes on a web-based time scale for a particular instrument. As the sequencer loops, it reads the selected note and then triggers the appropriate actuator for the instrument at the Science Museum in London.</p>
+
+<p><img src="docs/images/history1.png" alt="Screenshot showing video feed of an Orchestra instrument live from the Science Museum, London" title="Orchestra History"><img src="docs/images/history2.png" alt="Screenshot showing the Web user interface for the Orchestra" title="Orchestra History"></p>
+
+<p>The intent of this open source project is to release the base software system for a collaborative, real time loop sequencer to control physical hardware.</p>
+
+<hr><h2>
+<a name="what-is-the-orchestra-system" class="anchor" href="#what-is-the-orchestra-system"><span class="octicon octicon-link"></span></a>What is the Orchestra system?</h2>
+
+<p>The Web Lab Orchestra allows multiple users to control physical hardware,
+collaboratively and in real time, using a browser-based loop sequencer interface.</p>
+
+<p>This repository contains all the <a href="sw">software</a> you need to run your own version,
+plus some instructions to help you get started with your own <a href="hw">hardware</a>.</p>
+
+<h2>
+<a name="this-document" class="anchor" href="#this-document"><span class="octicon octicon-link"></span></a>This Document</h2>
+
+<p>In this document we will look briefly at how the Orchestra system is organized, followed by step-by-step instructions for getting started.</p>
+
+<h2>
+<a name="architecture" class="anchor" href="#architecture"><span class="octicon octicon-link"></span></a>Architecture</h2>
+
+<p>The system is organized into modules, each of which has a specific purpose. The modules communicate with each other via web sockets and MIDI. When the optional live video+audio components are used then either WebRTC or Adobe's proprietary RTMP streaming protocol are used (depending on your setup).</p>
+
+<p><img src="docs/images/orchestra_arch_main.png" alt="Diagram showing how Orchestra modules communicate with each other" title="Orchestra Modules"></p>
+
+<ul>
+<li>The <strong>UI</strong> is an HTML5 frontend (which is served via and communicates with
+the realtime server)</li>
+<li>The <strong>realtime server</strong> is a Node.js backend which accepts WebSockets
+connections from the other components, keeping them all in sync</li>
+<li>The <strong>hub</strong> is a combination of Python-based daemon and Max patch which commands MIDI hardware based on state data from the realtime server</li>
+</ul><p>Optionally, the system can be configured to stream live audio and video from one computer back to the UI. This is intended to allow someone to play an instrument in one location from a computer in another location and be able to hear the results.</p>
+
+<p>The live audio and video streaming components can be configured to use the WebRTC standard, or use Flash video. The WebRTC setup is preferred because it involves running fewer pieces of software. However, WebRTC is in active development so its performance today may still have much room for improvement.</p>
+
+<p><img src="docs/images/orchestra_arch_streamer.png" alt="Diagram showing how WebRC and Flash video can be used with the Orchestra"></p>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<h3>
+<a name="assumptions" class="anchor" href="#assumptions"><span class="octicon octicon-link"></span></a>Assumptions</h3>
+
+<blockquote>
+<p>These instructions assume:</p>
+
+<ul>
+<li>...you will be running all software on a <strong>single</strong> computer which is running either Linux or Mac OS X. We will call this "the computer" from now on. The components can also be configured to each run on different hosts
+(as they do in <a href="http://www.chromeweblab.com/">the Chrome Web Lab</a>).
+See the <a href="#configuration">Configuration</a> section below.</li>
+<li>...you have some development knowledge (ideally in JavaScript, Python and Max) and are comfortable typing commands into a shell or the Mac OS X Terminal.</li>
+<li>...you have already cloned, forked or downloaded the <a href="../../">project repository</a> onto the computer. If you haven't, just download it <a href="../../archive/master.zip">here</a>. You can also click the "Code" link at the top of this page and look at all of the cloning and forking options available.</li>
+</ul>
+</blockquote>
+
+<h3>
+<a name="running" class="anchor" href="#running"><span class="octicon octicon-link"></span></a>Running</h3>
+
+<p>The Orchestra project contains a git submodule for the signalmaster WebRTC component. It is important to understand that there are some potential issues when using git submodules. Please read this <a href="http://git-scm.com/book/en/Git-Tools-Submodules#Issues-with-Submodules">note from the git documentation</a> before proceeding. Essentially, though, if you don't use branches within the submodule then you should be safe.</p>
+
+<p>Before start any of the Orchestra components, please update the repository's submodules via the GitHub app, or by running this shell command from the repository <a href="../">root folder</a>:</p>
+
+<p><code>git submodule update --init</code></p>
+
+<h4>
+<a name="realtime-server" class="anchor" href="#realtime-server"><span class="octicon octicon-link"></span></a>Realtime server</h4>
+
+<ol>
+<li>Download and install the latest version of Node.js from <a href="http://nodejs.org/">this page</a>.</li>
+<li>Start a shell or Terminal and change to the <a href="sw/realtimeserver"><strong>sw/realtimeserver</strong> folder</a>.</li>
+<li>Run
+<code>
+node server.js
+</code>
+</li>
+</ol><p>The server's websocket connection will now be available at <code>localhost:8080</code>.</p>
+
+<p>You may run it locally or on a 3rd party host such as Joyent.</p>
+
+<h4>
+<a name="hub" class="anchor" href="#hub"><span class="octicon octicon-link"></span></a>Hub</h4>
+
+<ol>
+<li>You will need Cycling 74's <a href="http://cycling74.com/products/max">Max</a>. If you do not have Max already, you can download a <a href="http://cycling74.com/downloads/">free trial of the full product</a>. There is likely a time limit on the free trial. You can also get their free <a href="http://cycling74.com/downloads/runtime/">runtime</a> which will let you use the Hub, but won't let you edit it.</li>
+<li>Read our guide on <a href="MAX.md">how we configured Max</a>
+</li>
+<li>Open <a href="Orchestra/sw/hub/max/sequencer.maxpat">sequencer.maxpat</a>, from the <a href="Orchestra/sw/hub/max">sw/hub/max</a> folder, in Max, the main Max patch. <strong>Note</strong>: Max will allow you to open and run more than one copy of the same file. Please Make sure only one copy of the sequencer patch
+is running at a time!</li>
+<li>Double-click the <code>[noteout]</code> box and make sure your MIDI interface is selected.
+(If you have a full version of Max, you can pre-configure this.)</li>
+</ol><p>You may stop and re-start the sequencer with the space bar.</p>
+
+<p>The Python portion of the Hub is started separately:</p>
+
+<ol>
+<li>Start a shell or Terminal and change to the <a href="sw/hub"><strong>sw/hub</strong> folder</a>.</li>
+<li>
+<p>Then, to start the Python daemon, run:</p>
+
+<pre><code>  ./script/start.sh
 </code></pre>
 
-<p>If you see a gem you want more information on you can add the details option.
-You’ll want to do this with a small number of gems, though, as listing gems
-with details requires downloading more files:</p>
+<p>To stop it, run:</p>
 
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem search ^rails<span class="nv">$ </span>-d
-</pre></div>
+<pre><code>  ./script/stop.sh
+</code></pre>
+</li>
+</ol><p>You can tail the server logs in <code>log/twistd.log</code>.</p>
 
-<pre><code>*** REMOTE GEMS ***
+<h4>
+<a name="streaming-audio-and-video" class="anchor" href="#streaming-audio-and-video"><span class="octicon octicon-link"></span></a>Streaming Audio and Video</h4>
 
-rails (4.0.0)
-    Author: David Heinemeier Hansson
-    Homepage: http://www.rubyonrails.org
+<p>Streaming live audio and video of the orchestra back to the UI is optional. If you want to use this component you first need to chose if you will use WebRTC or Flash video. See the <a href="#architecture">Architecture</a> and <a href="#streamer">Streamer Requirements and Dependencies</a> sections for a description of the options.</p>
 
-    Full-stack web application framework.
+<h5>
+<a name="webrtc" class="anchor" href="#webrtc"><span class="octicon octicon-link"></span></a>WebRTC</h5>
+
+<ol>
+<li>The <a href="https://github.com/andyet/signalmaster">signalmaster</a> WebRTC signalling application is included as a submodule in this repository so that you should not need to manually download the source. If for some reason you need it, the <strong>signalmaster</strong> repository can be cloned or downloaded from GitHub at <a href="https://github.com/andyet/signalmaster">https://github.com/andyet/signalmaster</a>.</li>
+<li>Start a shell or Terminal and change to the the <a href="../">main repository folder</a>.</li>
+<li>Run this command to make sure that your copy of <strong>signalmaster</strong> is up-to-date: <code>git submodule update</code>. <strong>NOTE</strong>: If please be sure to run <code>git submodule update --init</code> if you have just cloned the repository.</li>
+<li>Change to the the <a href="sw/streamer/signalmaster">Orchestra/sw/streamer/signalmaster</a> folder.</li>
+<li>Install its dependencies by running <code>npm install</code>.</li>
+<li>Make sure the realtime server is running. If it is not, see the <a href="#getting-started">realtime server section above</a>.</li>
+<li>Start <strong>signalmaster</strong> by running <code>node server.js</code> from the <a href="sw/streamer/signalmaster">Orchestra/sw/streamer/signalmaster</a> folder.</li>
+<li>Then open <code>http://localhost:8081/webrtc-streamer</code> in Chrome. You will be prompted to allow camera access. A pull-down menu allows you to select which instrument to stream to.</li>
+</ol><p>Multiple streamers may access the same camera on the same computer, if you would like all instruments to display the same stream.</p>
+
+<p>You can now skip ahead to the <a href="#ui">UI section</a>.</p>
+
+<h5>
+<a name="flash-video" class="anchor" href="#flash-video"><span class="octicon octicon-link"></span></a>Flash video</h5>
+
+<p>If you have already set up WebRTC video streaming you can skip ahead to the <a href="#ui">UI section</a>.</p>
+
+<p>These instructions assume you will be using the open source Red5 Flash-compatible media server. Other systems, such as Adobe's Flash Media Server, should also work, though we do not have instructions for them here.</p>
+
+<ol>
+<li>Download and install the version 1.0 of the Red5 server from <a href="http://www.red5.org/red5-server/">this page</a>
+</li>
+<li>
+<p>Start a shell or Terminal. <code>cd</code> to the Red5 directory and run</p>
+
+<pre><code>./red5.sh
+</code></pre>
+</li>
+<li><p>We now must set up the default webapp. Once the server has booted up, go to
+<a href="http://localhost:5080/installer">http://localhost:5080/installer</a>
+in your browser</p></li>
+<li><p>Install <code>oflaDemo</code> (checking the File Name column to make sure it's
+the right one). After doing this once, the webapp will remain installed in this Red5 deployment.</p></li>
+<li><p>Download and install Adobe's Flash Media Live Encoder (FMLE) from <a href="http://www.adobe.com/products/flash-media-encoder.html">this page</a>.</p></li>
+<li>Start FMLE.</li>
+<li>Load the streaming profile included with the Orchestra system by opening <a href="sw/streamer/stream-to-local-red5.xml"><code>stream-to-local-red5.xml</code></a> in FMLE.</li>
+<li>click Start to begin streaming</li>
+</ol><p>To set up multiple streamers locally, the simplest would be to have each
+streamer on a separate machine, with its own copy of FMLE and Red5.
+You may of course run all of the streams (from multiple instances of FMLE)
+through a single Red5 or Flash Media Server if you wish; however, the
+configuration for that scenario is not provided here.</p>
+
+<p>Or you can simply use one video stream for all clients by duplicating
+the RTMP URLs in <code>VideoStreamPaths.js</code> (see <strong>Configuration</strong> above).</p>
+
+<h4>
+<a name="ui" class="anchor" href="#ui"><span class="octicon octicon-link"></span></a>UI</h4>
+
+<ol>
+<li>Make sure the realtime server is running. If it is not, see the <a href="#getting-started">realtime server section above</a>.</li>
+<li>Open <code>http://localhost:8081/ui</code> in Chrome.</li>
+</ol><p>There you will see menus to select which instrument you'd like to play,
+and what type of video stream (if any) you'd like to sync to.</p>
+
+<p><strong>Note</strong>: If you don't use any video stream, it is highly recommended that you
+run the <strong>UI</strong> Chrome clients on the same local network as the <strong>hub</strong>, and slave 
+them to the <strong>hub</strong> machine via NTP. (This is easily done on Mac OS by entering
+the <strong>hub</strong>'s IP in the <code>Set date and time automatically</code> field in
+<code>System Preferences</code> &gt; <code>Date &amp; Time</code> on the Chrome client machine.) This ensures
+that their system clocks are in sync, so that the timing of the sequencer on
+the screen matches the timing of the <strong>hub</strong> playback.</p>
+
+<h5>
+<a name="importing-midi-files" class="anchor" href="#importing-midi-files"><span class="octicon octicon-link"></span></a>Importing MIDI files</h5>
+
+<p>You can import a MIDI clip by dropping a MIDI file on the file input.</p>
+
+<p>The MIDI file <em>must</em> be in this format:</p>
+
+<ul>
+<li>Two bars of 4/4 (i.e. 8 quarter notes)</li>
+<li>Quantized to eighth notes</li>
+<li>Counting up from middle C (a.k.a. MIDI pitch 60)</li>
+</ul><h3>
+<a name="sound" class="anchor" href="#sound"><span class="octicon octicon-link"></span></a>Sound</h3>
+
+<p>Once you've got all the software components up and running, you can begin to
+work on the sound of the music that's played back.</p>
+
+<h4>
+<a name="soft-synth" class="anchor" href="#soft-synth"><span class="octicon octicon-link"></span></a>Soft synth</h4>
+
+<p>If you just want to hear something play back without setting up any hardware,
+you can download a software synthesizer (or "soft synth"). There are many
+options, some of which are standalone, some of which require a plugin (e.g. VST)
+host. One good standalone synth for Mac + Windows is
+<a href="http://www.futureaudioworkshop.com/circle/">circle</a>.</p>
+
+<p>By default, the MIDI pitches output by the Hub are all sequential, i.e., the
+chromatic scale. (See <a href="sw/hub/max/playback.js">playback.js</a>.). You can map them
+to a different tuning in <a href="sw/hub/max/pitch-mappings.txt">pitch-mappings.txt</a>,
+which is a list of key-value pairs in Max's <code>coll</code> file format. So to map MIDI
+pitch 61 to pitch 62, you would do:</p>
+
+<pre><code>61, 62;
 </code></pre>
 
-<p>You can also search for gems on rubygems.org such as <a href="https://rubygems.org/search?utf8=%E2%9C%93&amp;query=rake">this search for
-rake</a></p>
+<p>If a mapping is not present for a specific pitch, the original pitch is output.</p>
 
-<h2>
-<a name="installing-gems" class="anchor" href="#installing-gems"><span class="octicon octicon-link"></span></a>Installing Gems</h2>
+<h3>
+<a name="physical-actuators" class="anchor" href="#physical-actuators"><span class="octicon octicon-link"></span></a>Physical actuators</h3>
 
-<p>The <code>install</code> command downloads and installs the gem and any necessary
-dependencies then builds documentation for the installed gems.</p>
+<p>If you'd like to experiment with building your own actuated instruments, please
+see the <a href="hw">hardware documentation</a>.</p>
 
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem install drip
-    Fetching: rbtree-0.4.1.gem <span class="o">(</span>100%<span class="o">)</span>
-    Building native extensions.  This could take a <span class="k">while</span>...
-    Successfully installed rbtree-0.4.1
-    Fetching: drip-0.0.2.gem <span class="o">(</span>100%<span class="o">)</span>
-    Successfully installed drip-0.0.2
-    Parsing documentation <span class="k">for </span>rbtree-0.4.1
-    Installing ri documentation <span class="k">for </span>rbtree-0.4.1
-    Parsing documentation <span class="k">for </span>drip-0.0.2
-    Installing ri documentation <span class="k">for </span>drip-0.0.2
-    Done installing documentation <span class="k">for </span>rbtree, drip after 0 seconds
-    2 gems installed
-</pre></div>
+<hr><h2>
+<a name="reference" class="anchor" href="#reference"><span class="octicon octicon-link"></span></a>Reference</h2>
 
-<p>Here the drip command depends upon the rbtree gem which has an extension. Ruby
-installs the dependency rbtree and builds its extension, installs the drip
-gem, then builds documentation for the installed gems.</p>
+<h3>
+<a name="requirements-and-dependencies" class="anchor" href="#requirements-and-dependencies"><span class="octicon octicon-link"></span></a>Requirements and Dependencies</h3>
 
-<p>You can disable documentation generation using the <code>--no-doc</code> argument when
-installing gems.</p>
+<h4>
+<a name="realtime-server-1" class="anchor" href="#realtime-server-1"><span class="octicon octicon-link"></span></a>Realtime server</h4>
 
-<h2>
-<a name="requiring-code" class="anchor" href="#requiring-code"><span class="octicon octicon-link"></span></a>Requiring code</h2>
+<p>The server is built on <a href="http://nodejs.org/">Node.js</a>, with no package dependencies.</p>
 
-<p>RubyGems modifies your Ruby load path, which controls how your Ruby code is
-found by the <code>require</code> statement. When you <code>require</code> a gem, really you’re just
-placing that gem’s <code>lib</code> directory onto your <code>$LOAD_PATH</code>. Let’s try this out
-in <code>irb</code> and get some help from the <code>pretty_print</code> library included with Ruby.</p>
+<h4>
+<a name="hub-1" class="anchor" href="#hub-1"><span class="octicon octicon-link"></span></a>Hub</h4>
 
-<p><em>Tip: Passing <code>-r</code> to <code>irb</code> will automatically require a library when irb is
-loaded.</em></p>
+<p>The Hub consists of two subcomponents—a <strong>Python WebSockets client</strong> and a
+<strong>Max patch</strong>, which communicate with one another locally via UDP (OpenSoundControl).
+The motivation for this duality is to combine the benefits of MaxMSP's musically-precise
+timing with Python's robust networking functionality.</p>
 
-<div class="highlight highlight-ruby"><pre>    <span class="sx">% irb </span><span class="o">-</span><span class="n">rpp</span>
-    <span class="o">&gt;&gt;</span> <span class="n">pp</span> <span class="vg">$LOAD_PATH</span>
-    <span class="o">[</span><span class="s2">".../lib/ruby/site_ruby/1.9.1"</span><span class="p">,</span>
-     <span class="s2">".../lib/ruby/site_ruby"</span><span class="p">,</span>
-     <span class="s2">".../lib/ruby/vendor_ruby/1.9.1"</span><span class="p">,</span>
-     <span class="s2">".../lib/ruby/vendor_ruby"</span><span class="p">,</span>
-     <span class="s2">".../lib/ruby/1.9.1"</span><span class="p">,</span>
-     <span class="s2">"."</span><span class="o">]</span>
-</pre></div>
+<h5>
+<a name="python" class="anchor" href="#python"><span class="octicon octicon-link"></span></a>Python</h5>
 
-<p>By default you have just a few system directories on the load path and the
-Ruby standard libraries. To add the awesome_print directories to the load
-path, you can require one of its files:</p>
+<p>The Python client has been tested with <a href="http://www.python.org/download/releases/2.7/">Python 2.7</a>,
+using <a href="http://twistedmatrix.com/documents/current/core/howto/basics.html">twistd</a> to run as a daemon.</p>
 
-<div class="highlight highlight-ruby"><pre>    <span class="sx">% irb </span><span class="o">-</span><span class="n">rpp</span>
-    <span class="o">&gt;&gt;</span> <span class="nb">require</span> <span class="s1">'ap'</span>
-    <span class="o">=&gt;</span> <span class="kp">true</span>
-    <span class="o">&gt;&gt;</span> <span class="n">pp</span> <span class="vg">$LOAD_PATH</span><span class="o">.</span><span class="n">first</span>
-    <span class="s2">".../gems/awesome_print-1.0.2/lib"</span>
-</pre></div>
+<p>To install the required Python packages, first <a href="http://www.pip-installer.org/en/latest/installing.html">install pip</a>
+(using <code>get-pip.py</code> or otherwise). Once pip is installed:</p>
 
-<p>Note: For Ruby 1.8 you must <code>require 'rubygems'</code> before requiring any gems.</p>
+<ol>
+<li>Open the Terminal or shell and change to the <a href="sw/hub">Orchestra/sw/hub</a> folder</li>
+<li>
+<p>Run this command from that folder:</p>
 
-<p>Once you’ve required <code>ap</code>, RubyGems automatically places its <code>lib</code> directory
-on the <code>$LOAD_PATH</code>.</p>
+<p><code>sudo pip install -r requirements.txt</code></p>
+</li>
+</ol><p>You may instaed install the individual Python packages listed in <a href="sw/hub/requirements.txt">Orchestra/sw/hub/requirements.txt</a>.</p>
 
-<p>That’s basically it for what’s in a gem. Drop Ruby code into <code>lib</code>, name a
-Ruby file the same as your gem (for the gem “freewill” the file should be
-<code>freewill.rb</code>, see also <a href="/name-your-gem">name your gem</a>) and it’s loadable by
-RubyGems.</p>
+<h5>
+<a name="max" class="anchor" href="#max"><span class="octicon octicon-link"></span></a>Max</h5>
 
-<p>The <code>lib</code> directory itself normally contains only one <code>.rb</code> file and a
-directory with the same name as the gem which contains the rest of the files.</p>
+<p>You may use either the full or free Runtime version of
+<a href="http://cycling74.com/downloads/older/">Max 5.1.9</a>.</p>
 
-<p>For example:</p>
+<h4>
+<a name="streamer" class="anchor" href="#streamer"><span class="octicon octicon-link"></span></a>Streamer</h4>
 
-<div class="highlight highlight-ruby"><pre>    <span class="sx">% tree </span><span class="n">freewill</span><span class="o">/</span>
-    <span class="n">freewill</span><span class="o">/</span>
-    <span class="err">└──</span> <span class="n">lib</span><span class="o">/</span>
-        <span class="err">├──</span> <span class="n">freewill</span><span class="o">/</span>
-        <span class="err">│</span>   <span class="err">├──</span> <span class="n">user</span><span class="o">.</span><span class="n">rb</span>
-        <span class="err">│</span>   <span class="err">├──</span> <span class="n">widget</span><span class="o">.</span><span class="n">rb</span>
-        <span class="err">│</span>   <span class="err">└──</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-        <span class="err">└──</span> <span class="n">freewill</span><span class="o">.</span><span class="n">rb</span>
-</pre></div>
+<p>You may select one of two video streaming platforms: Flash video or WebRTC.</p>
 
-<h2>
-<a name="listing-installed-gems" class="anchor" href="#listing-installed-gems"><span class="octicon octicon-link"></span></a>Listing Installed Gems</h2>
+<p>Flash video is used in <a href="http://www.chromeweblab.com/">the Chrome Web Lab</a>,
+as it can be synced to sequencer data from the realtime server in the UI.</p>
 
-<p>The <code>list</code> command shows your locally installed gems:</p>
+<p><strong>Caveat emptor</strong>: WebRTC video has no mechanism to sync the audio/video stream
+with the note sequencer (as Flash video does), so it will have a noticeable
+delay with regards to the sequencer, especially on the open internet.</p>
 
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem list
-</pre></div>
+<h5>
+<a name="webrtc-1" class="anchor" href="#webrtc-1"><span class="octicon octicon-link"></span></a>WebRTC</h5>
 
-<pre><code>*** LOCAL GEMS ***
+<p>The browser JavaScript for broadcasting and viewing WebRTC streams,
+<a href="https://github.com/Tellart/SimpleWebRTC">a custom fork of SimpleWebRTC</a>,
+is included in this repository, so you don't need to install anything.</p>
 
-bigdecimal (1.2.0)
-drip (0.0.2)
-io-console (0.4.2)
-json (1.7.7)
-minitest (4.3.2)
-psych (2.0.0)
-rake (0.9.6)
-rbtree (0.4.1)
-rdoc (4.0.0)
-test-unit (2.0.0.0)
-</code></pre>
+<p>SimpleWebRTC has a companion Node.js backend (for signaling in between browsers)
+called <a href="https://github.com/andyet/signalmaster">signalmaster</a>. It is recommended
+that you clone it from GitHub and install its dependencies using
+<a href="https://npmjs.org/"><code>npm</code></a>.</p>
 
-<p>(Ruby ships with some gems by default, bigdecimal, io-console, json, minitest,
-psych, rake, rdoc, test-unit for ruby 2.0.0).</p>
+<h5>
+<a name="flash-video-1" class="anchor" href="#flash-video-1"><span class="octicon octicon-link"></span></a>Flash video</h5>
 
-<h2>
-<a name="uninstalling-gems" class="anchor" href="#uninstalling-gems"><span class="octicon octicon-link"></span></a>Uninstalling Gems</h2>
+<p>If you won't be using WebRTC you can also use Flash video to stream. For this, you'll need an encoder to capture the video from the camera and a Flash Media Server to relay the stream to the end client.</p>
 
-<p>The <code>uninstall</code> command removes the gems you have installed.</p>
+<p>For Flash video, the Orchestra works with Adobe's 
+<a href="http://www.adobe.com/products/flash-media-encoder.html">Flash Media Live Encoder 3.2</a>.</p>
 
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem uninstall drip
-    Successfully uninstalled drip-0.0.2
-</pre></div>
+<p>The <a href="http://www.red5.org/">Red5 Media Server 1.0</a> is an open source alternative
+to Adobe's commercial Flash Media Server product.</p>
 
-<p>If you uninstall a dependency of a gem RubyGems will ask you for confirmation.</p>
+<p>You may of course use a paid streaming host in the cloud, but do make sure the latency is
+as low as possible (ideally not more than a few seconds).</p>
 
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem uninstall rbtree
+<h4>
+<a name="ui-1" class="anchor" href="#ui-1"><span class="octicon octicon-link"></span></a>UI</h4>
 
-    You have requested to uninstall the gem:
-        rbtree-0.4.1
+<p>A modern HTML5-compatible browser, such as <a href="http://www.google.com/chrome">Chrome</a> or <a href="http://www.webkit.org/">Webkit</a>
+is required to use the UI. The UI prioritizes experimentation and ease of disassembly, and does
+not contain any complex code to make it work in older browsers.</p>
 
-    drip-0.0.2 depends on rbtree <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>
-    If you remove this gem, these dependencies will not be met.
-    Continue with Uninstall? <span class="o">[</span>yN<span class="o">]</span>  n
-    ERROR:  While executing gem ... <span class="o">(</span>Gem::DependencyRemovalException<span class="o">)</span>
-        Uninstallation aborted due to dependent gem<span class="o">(</span>s<span class="o">)</span>
-</pre></div>
+<h3>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h3>
 
-<h2>
-<a name="viewing-documentation" class="anchor" href="#viewing-documentation"><span class="octicon octicon-link"></span></a>Viewing Documentation</h2>
+<h4>
+<a name="deploying-components-on-different-hosts" class="anchor" href="#deploying-components-on-different-hosts"><span class="octicon octicon-link"></span></a>Deploying components on different hosts</h4>
 
-<p>You can view the documentation for your installed gems with <code>ri</code>:</p>
+<p>Unless you are running all components of the Orchestra on a single host, you
+will need to configure each to point to certain others.</p>
 
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>ri RBTree
-    RBTree &lt; MultiRBTree
-</pre></div>
+<p>If you deploy the <strong>realtime server</strong> on a separate host:</p>
 
-<pre><code>(from gem rbtree-0.4.0)
-</code></pre>
+<ul>
+<li>In the <strong>hub</strong>, update the <code>host</code> in <a href="sw/hub/config/app.yml">app.yml</a>
+</li>
+<li>In the <strong>UI</strong>, update the <code>REALTIME_SERVER_HOST</code> in
+<a href="sw/realtimeserver/static/ui/js/weblab/orchestra/OrchestraConfiguration.js">OrchestraConfiguration.js</a>
+</li>
+</ul><p>If you are using Flash video, and move the Red5 or Flash Media Server to another host:</p>
 
-<hr><pre><code>A sorted associative collection that cannot
-contain duplicate keys. RBTree is a
-subclass of MultiRBTree.
-</code></pre>
+<ul>
+<li>In the streamers, update the Primary Streaming Server in each instance of FMLE</li>
+<li>In the <strong>UI</strong>, update <code>LOW_LATENCY_URLS</code> (and <code>LOW_LATENCY_IDS</code> as needed) in
+<a href="sw/realtimeserver/static/ui/js/weblab/orchestra/OrchestraConfiguration.js">OrchestraConfiguration.js</a>
+(There should be one stream per instrument)</li>
+</ul><p>If you are using WebRTC, and move the Node.js signaling server to another host:</p>
 
-<hr><p>You can view the documentation for your installed gems in your browser with
-the <code>server</code> command:</p>
+<ul>
+<li>In the <strong>UI</strong>, update <code>WEBRTC_SIGNALING_URL</code> in
+<a href="sw/realtimeserver/static/ui/js/weblab/orchestra/OrchestraConfiguration.js">OrchestraConfiguration.js</a>
+(affects <strong>streamers</strong>, too)</li>
+</ul><h4>
+<a name="modifying-the-default-number-of-instruments-or-pitches" class="anchor" href="#modifying-the-default-number-of-instruments-or-pitches"><span class="octicon octicon-link"></span></a>Modifying the default number of instruments or pitches</h4>
 
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem server
-    Server started at http://0.0.0.0:8808
-    Server started at http://<span class="o">[</span>::<span class="o">]</span>:8808
-</pre></div>
-
-<p>You can access this documentation at http://localhost:8808</p>
-
-<h2>
-<a name="fetching-and-unpacking-gems" class="anchor" href="#fetching-and-unpacking-gems"><span class="octicon octicon-link"></span></a>Fetching and Unpacking Gems</h2>
-
-<p>If you wish to audit a gem’s contents without installing it you can use the
-<code>fetch</code> command to download the .gem file then extract its contents with the
-<code>unpack</code> command.</p>
-
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem fetch malice
-    Fetching: malice-13.gem <span class="o">(</span>100%<span class="o">)</span>
-    Downloaded malice-13
-    <span class="nv">$ </span>gem unpack malice-13.gem
-    Fetching: malice-13.gem <span class="o">(</span>100%<span class="o">)</span>
-    Unpacked gem: <span class="s1">'.../malice-13'</span>
-    <span class="nv">$ </span>more malice-13/README
-
-    Malice v. 13
-
-    DESCRIPTION
-
-    A small, malicious library.
-
-    <span class="o">[</span>...<span class="o">]</span>
-    <span class="nv">$ </span>rm -r malice-13*
-</pre></div>
-
-<p>You can also unpack a gem you have installed, modify a few files, then use the
-modified gem in place of the installed one:</p>
-
-<div class="highlight highlight-bash"><pre>    <span class="nv">$ </span>gem unpack rake
-    Unpacked gem: <span class="s1">'.../rake-10.1.0'</span>
-    <span class="nv">$ </span>vim rake-10.1.0/lib/rake/...
-    <span class="nv">$ </span>ruby -I rake-10.1.0/lib -S rake some_rake_task
-    <span class="o">[</span>...<span class="o">]</span>
-</pre></div>
-
-<p>The <code>-I</code> argument adds your unpacked rake to the ruby <code>$LOAD_PATH</code> which
-prevents RubyGems from loading the gem version (or the default version). The
-<code>-S</code> argument finds <code>rake</code> in the shell’s <code>$PATH</code> so you don’t have to type
-out the full path.</p>
-
-<h2>
-<a name="further-reading" class="anchor" href="#further-reading"><span class="octicon octicon-link"></span></a>Further Reading</h2>
-
-<p>This guide only shows the basics of using the <code>gem</code> command. For information
-on what’s inside a gem and how to use one you’ve installed see the next
-section, <a href="/what-is-a-gem">What is a gem</a>. For a complete reference of gem
-commands see the <a href="/command-reference">Command Reference</a>.</p>
-
-<p><a href="/">&lt;- Previous</a> <a href="/what-is-a-gem">Next -&gt;</a></p>
-
-<p>hosted on <a href="http://pages.github.com/">GitHub</a> | these guides are <a href="https://github.com/rubygems/guides">open
-source</a> and <a href="http://creativecommons.org/licenses/by/3.0/">free to
-remix</a></p>
+<ul>
+<li>In the <strong>realtime server</strong>, update <a href="sw/realtimeserver/weblab/configuration.js">configuration.js</a>
+</li>
+<li>In the <strong>UI</strong>, update
+<a href="sw/realtimeserver/static/ui/js/weblab/orchestra/OrchestraConfiguration.js">OrchestraConfiguration.js</a>
+(and search for <code>NUMBER_OF_PITCHES</code> in <a href="sw/realtimeserver/static/ui/css/orchestra.css">orchestra.css</a>)</li>
+<li>In the <strong>hub</strong> update <code>PITCHES_PER_INSTRUMENT</code> in <a href="sw/hub/max/playback.js">playback.js</a>
+</li>
+</ul>
       </section>
-
+      <footer>
+        <p>Project maintained by <a href="https://github.com/EricBecker">EricBecker</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
