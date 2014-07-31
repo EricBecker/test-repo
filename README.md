@@ -8,19 +8,43 @@ Test of built-in markdown syntax-highlighting.
 
 For testing purposes.
 
-Excerpt from :
-#11.3. Counting Files in the Current Directory
-
-To determine how many files there are in the current directory, put in
+#Source SDK 2013
+Get via
 ```bash
-ls -1 | wc -l
+   git clone git@github.com:ValveSoftware/source-sdk-2013.git
 ```
-This uses `wc` to do a count of the number of lines (`-l`) in the output of `ls -1`. It doesn't count dotfiles. Please note that `ls -l` (that's an "l" rather than a "1" as in the previous examples) which I used in previous versions of this HOWTO will actually give you a file count one greater than the actual count. Thanks to Kam Nejad for this point.
 
-If you want to count only files and NOT include symbolic links (just an example of what else you could do), you could use 
+Next, 
 ```bash
-ls -l | grep -v ^l | wc -l
-```
-(that's an "L" not a "1" this time, we want a "long" listing here). `grep` checks for any line beginning with "l" (indicating a link), and discards that line (`-v`).
+   # Single Player Project
+   $SDK_ROOT/sp/src/creategameprojects
+   $SDK_ROOT/sp/src/createallprojects
 
-Relative speed: "`ls -1 /usr/bin/ | wc -l`" takes about 1.03 seconds on an unloaded 486SX25 (`/usr/bin/` on this machine has 355 files). "`ls -l /usr/bin/ | grep -v ^l | wc -l`" takes about 1.19 seconds.
+# Multiplayer Project
+   $SDK_ROOT/mp/src/creategameprojects
+   $SDK_ROOT/mp/src/createallprojects
+```
+
+On Linux, do the following:
+Extract the steam runtime:
+```bash
+   $ tar xvf steam-runtime-sdk_latest.tar.xz
+   $ cd steam-runtime-sdk_<version>
+```
+Now, run 
+```bash
+   $ ./setup.sh
+```
+
+Pick your architecture and debug/release preferences. Then answer Y to everything else.
+
+```bash
+   $ ./shell.sh --arch=i386
+```
+
+#ON MAC OS X
+
+All you do is run
+```bash
+   $ make -f games.make
+```
